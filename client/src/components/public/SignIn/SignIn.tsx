@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { IconButton, InputAdornment } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-import { Label, Input, Button } from 'components/Elements';
-import { PasswordOff } from 'images/Icon';
+import { Label, Input, Button, InputPassword } from 'components/Elements';
 import { AppRoutes } from 'types/types';
+import { useFormSignIn } from 'hooks';
 
 const Container = styled.div`
   width: 100%;
@@ -59,31 +58,39 @@ const TextLink = styled(Link)`
 `;
 
 export const SignIn = () => {
+  const {
+    handleSubmitForm,
+    handleChangeUserName,
+    handleChangePassword,
+    handleChangePasswordMode,
+    userName,
+    password,
+    passwordMode,
+  } = useFormSignIn();
+
   return (
     <Container>
       <Title>Sign In</Title>
 
-      <Form>
+      <Form onSubmit={handleSubmitForm}>
         <Label>
           <LabelText>User Name</LabelText>
-          <Input placeholder="Example123" />
+
+          <Input
+            placeholder="Example123"
+            value={userName}
+            onChange={handleChangeUserName}
+          />
         </Label>
 
         <Label>
           <LabelText>Password</LabelText>
-          <Input
-            placeholder="***************"
-            type="text"
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  onClick={() => console.log('message')}
-                  sx={{ mb: 2 }}
-                >
-                  <PasswordOff />
-                </IconButton>
-              </InputAdornment>
-            }
+
+          <InputPassword
+            value={password}
+            handleChangePassword={handleChangePassword}
+            handleChangePasswordMode={handleChangePasswordMode}
+            passwordMode={passwordMode}
           />
         </Label>
 

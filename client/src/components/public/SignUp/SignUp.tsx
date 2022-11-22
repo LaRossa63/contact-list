@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { IconButton, InputAdornment } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-import { Label, Input, Button } from 'components/Elements';
-import { PasswordOff } from 'images/Icon';
+import { Label, Input, Button, InputPassword } from 'components/Elements';
 import { AppRoutes } from 'types/types';
+import { useFormSignUp } from 'hooks';
 
 const Container = styled.div`
   width: 100%;
@@ -59,54 +58,64 @@ const TextLink = styled(Link)`
 `;
 
 export const SignUp = () => {
+  const {
+    handleSubmitForm,
+    handleChangeFullName,
+    handleChangeUserName,
+    handleChangePassword,
+    handleChangePasswordConfirm,
+    handleChangePasswordMode,
+    fullName,
+    userName,
+    password,
+    passwordConfirm,
+    passwordMode,
+  } = useFormSignUp();
+
   return (
     <Container>
       <Title>Sign Up</Title>
 
-      <Form>
+      <Form onSubmit={handleSubmitForm}>
         <Label>
           <LabelText>Full Name</LabelText>
-          <Input placeholder="Example Name" />
+
+          <Input
+            placeholder="Example Name"
+            value={fullName}
+            onChange={handleChangeFullName}
+          />
         </Label>
 
         <Label>
           <LabelText>User Name</LabelText>
-          <Input placeholder="Example123" />
+
+          <Input
+            placeholder="Example123"
+            value={userName}
+            onChange={handleChangeUserName}
+          />
         </Label>
 
         <Label>
           <LabelText>Password</LabelText>
-          <Input
-            placeholder="***************"
-            type="text"
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  onClick={() => console.log('message')}
-                  sx={{ mb: 2 }}
-                >
-                  <PasswordOff />
-                </IconButton>
-              </InputAdornment>
-            }
+
+          <InputPassword
+            value={password}
+            handleChangePassword={handleChangePassword}
+            handleChangePasswordMode={handleChangePasswordMode}
+            passwordMode={passwordMode}
           />
         </Label>
 
         <Label>
           <LabelText>Confirm Password </LabelText>
-          <Input
-            placeholder="***************"
-            type="text"
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  onClick={() => console.log('message')}
-                  sx={{ mb: 2 }}
-                >
-                  <PasswordOff />
-                </IconButton>
-              </InputAdornment>
-            }
+
+          <InputPassword
+            value={passwordConfirm}
+            handleChangePassword={handleChangePasswordConfirm}
+            handleChangePasswordMode={handleChangePasswordMode}
+            passwordMode={passwordMode}
           />
         </Label>
 
