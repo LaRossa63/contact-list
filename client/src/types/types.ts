@@ -1,10 +1,10 @@
 export enum LinksApi {
   BASE_URL = 'http://localhost:4000/api',
 
-  USER_SIGN_UP = '/registration',
-  USER_SIGN_IN = '/login',
-  USER_LOGOUT = '/logout',
-  USER_REFRESH_TOKEN = '/refresh',
+  SIGN_UP = '/signup',
+  SIGN_IN = '/signin',
+  LOGOUT = '/logout',
+  REFRESH_TOKEN = '/refresh',
 }
 
 export enum KeyApi {
@@ -12,8 +12,8 @@ export enum KeyApi {
 }
 
 export enum AppRoutes {
-  SIGNUP = 'signup',
-  SIGNIN = 'signin',
+  SIGN_UP = '/signup',
+  SIGN_IN = '/signin',
 
   CONTACT_LIST = '/',
 }

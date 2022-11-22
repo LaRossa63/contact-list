@@ -12,7 +12,7 @@ export const AppRouter = () => {
     {
       path: '*',
       element: (
-        <Navigate to={isAuth ? AppRoutes.CONTACT_LIST : AppRoutes.SIGNIN} />
+        <Navigate to={isAuth ? AppRoutes.CONTACT_LIST : AppRoutes.SIGN_IN} />
       ),
     },
   ];

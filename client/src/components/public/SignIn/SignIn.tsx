@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import { IconButton, InputAdornment } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 import { Label, Input, Button } from 'components/Elements';
-import { IconButton, InputAdornment } from '@mui/material';
 import { PasswordOff } from 'images/Icon';
+import { AppRoutes } from 'types/types';
 
 const Container = styled.div`
   width: 100%;
@@ -42,6 +44,20 @@ const LabelText = styled.span`
   color: ${(props) => props.theme.pallette.common.white};
 `;
 
+const Text = styled.p`
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 155%;
+  text-align: center;
+  color: ${(props) => props.theme.pallette.text.primary};
+
+  margin-top: 25px;
+`;
+
+const TextLink = styled(Link)`
+  color: ${(props) => props.theme.pallette.text.secondary};
+`;
+
 export const SignIn = () => {
   return (
     <Container>
@@ -73,6 +89,11 @@ export const SignIn = () => {
 
         <Button>Sign In</Button>
       </Form>
+
+      <Text>
+        Don`t have account yet?
+        <TextLink to={AppRoutes.SIGN_UP}> New Account</TextLink>
+      </Text>
     </Container>
   );
 };
