@@ -10,14 +10,12 @@ declare module 'styled-components' {
 
       background: {
         default: string;
-        auth: string;
         button: string;
       };
 
       text: {
         primary: string;
         secondary: string;
-        title: string;
       };
     };
 

@@ -3,6 +3,11 @@ import { createGlobalStyle } from 'styled-components';
 
 const ResetStyle = createGlobalStyle`
 
+  body {
+    font-family: ${(props) => props.theme.typography.fontFamily};
+    font-style: normal;
+  }
+
  * {
     padding: 0px;
     margin: 0px;

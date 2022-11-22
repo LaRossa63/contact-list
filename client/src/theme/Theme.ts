@@ -8,15 +8,13 @@ export const Theme: DefaultTheme = {
     },
 
     background: {
-      default: '#F5F5F5',
-      auth: '#1D283A',
+      default: '#1D283A',
       button: '#539713',
     },
 
     text: {
       primary: '#F1F2F1',
       secondary: '#7FAAF0',
-      title: '#539713',
     },
   },
 
