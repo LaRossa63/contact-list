@@ -1,3 +1,4 @@
+import { Delete } from 'images/Icon';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -85,6 +86,8 @@ export const FavouritesList = () => {
               <TextName>{element.name}</TextName>
               <TextTel>{element.tel}</TextTel>
             </ContainerText>
+
+            <Delete />
           </ListItem>
         ))}
       </List>
