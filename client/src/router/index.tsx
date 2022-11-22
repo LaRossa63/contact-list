@@ -6,7 +6,7 @@ import { PublicRoutes } from './publicRoutes';
 import { AppRoutes } from 'types/types';
 
 export const AppRouter = () => {
-  const [isAuth, setIsAuth] = useState(false);
+  const [isAuth, setIsAuth] = useState(true);
 
   const commonRoutes = [
     {
