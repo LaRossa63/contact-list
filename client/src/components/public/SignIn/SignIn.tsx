@@ -2,7 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { Label, Input, Button, InputPassword } from 'components/Elements';
+import {
+  Label,
+  Input,
+  Button,
+  InputPassword,
+  TextError,
+} from 'components/Elements';
 import { AppRoutes } from 'types/types';
 import { useFormSignIn } from 'hooks';
 
@@ -66,6 +72,7 @@ export const SignIn = () => {
     userName,
     password,
     passwordMode,
+    error,
   } = useFormSignIn();
 
   return (
@@ -94,8 +101,10 @@ export const SignIn = () => {
           />
         </Label>
 
-        <Button>Sign In</Button>
+        <Button type="submit">Sign In</Button>
       </Form>
+
+      {error && <TextError>{error}</TextError>}
 
       <Text>
         Don`t have account yet?

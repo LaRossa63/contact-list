@@ -7,11 +7,16 @@ export const AuthRouter = new Router();
 
 AuthRouter.post(
   '/signup',
-  body('email').isEmail(),
-  body('password').isLength({ min: 6, max: 16 }),
-  body('nickName').isLength({ min: 3, max: 12 }),
+  body('fullName').isLength({ min: 4, max: 16 }),
+  body('userName').isLength({ min: 4, max: 16 }),
+  body('password').isLength({ min: 4, max: 16 }),
   AuthController.signUp
 );
-AuthRouter.post('/signin', AuthController.signIn);
+AuthRouter.post(
+  '/signin',
+  body('userName').isLength({ min: 4, max: 16 }),
+  body('password').isLength({ min: 4, max: 16 }),
+  AuthController.signIn
+);
 AuthRouter.post('/logout', AuthController.logout);
 AuthRouter.get('/refresh', AuthController.refresh);

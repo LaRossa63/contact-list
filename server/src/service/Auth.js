@@ -1,25 +1,21 @@
 import bcrypt from 'bcrypt';
 
+import { TokenService } from './index.js';
 import { AuthModel } from '../models/index.js';
 import { AuthDto } from '../dto/index.js';
 import { ApiError } from '../exceptions/index.js';
 
 export const AuthService = {
-  async signUp(email, nickName, password) {
-    const candidateEmail = await AuthModel.findOne({ email });
-    if (candidateEmail) {
-      throw ApiError.BadRequest('Данная почта уже используется');
-    }
-
-    const candidateNickMan = await AuthModel.findOne({ nickName });
-    if (candidateNickMan) {
+  async signUp(userName, fullName, password) {
+    const candidateUserName = await AuthModel.findOne({ userName });
+    if (candidateUserName) {
       throw ApiError.BadRequest('Данное имя уже используется');
     }
 
     const hashPassword = await bcrypt.hash(password, 3);
     const newUser = await AuthModel.create({
-      email,
-      nickName,
+      userName,
+      fullName,
       password: hashPassword,
     });
     const userDTO = new AuthDto(newUser);
@@ -30,11 +26,11 @@ export const AuthService = {
     return { user: userDTO, ...tokens };
   },
 
-  async signIn(email, password) {
-    const candidate = await AuthModel.findOne({ email });
+  async signIn(userName, password) {
+    const candidate = await AuthModel.findOne({ userName });
 
     if (!candidate) {
-      throw ApiError.BadRequest('Пользователь с таким email нету!');
+      throw ApiError.BadRequest('Пользователь с таким именем нету!');
     }
 
     const isPasswordValid = await bcrypt.compare(password, candidate.password);
@@ -68,11 +64,12 @@ export const AuthService = {
       throw ApiError.UnauthorizedError();
     }
 
-    const user = await AuthModel.findById(userData.id);
+    const user = await AuthModel.find({ userName: userData.userName });
+
     const userDto = new AuthDto(user);
     const tokens = await TokenService.generateTokens({ ...userDto });
 
-    await TokenService.saveToken(userDto.id, tokens.refreshToken);
+    await TokenService.saveToken(userDto.userName, tokens.refreshToken);
     return { user: userDto, ...tokens };
   },
 };

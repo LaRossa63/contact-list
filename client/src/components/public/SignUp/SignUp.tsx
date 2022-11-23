@@ -2,7 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { Label, Input, Button, InputPassword } from 'components/Elements';
+import {
+  Label,
+  Input,
+  Button,
+  InputPassword,
+  TextError,
+} from 'components/Elements';
 import { AppRoutes } from 'types/types';
 import { useFormSignUp } from 'hooks';
 
@@ -70,6 +76,7 @@ export const SignUp = () => {
     password,
     passwordConfirm,
     passwordMode,
+    error,
   } = useFormSignUp();
 
   return (
@@ -119,8 +126,10 @@ export const SignUp = () => {
           />
         </Label>
 
-        <Button>Sign Up</Button>
+        <Button type="submit">Sign Up</Button>
       </Form>
+
+      {error && <TextError>{error}</TextError>}
 
       <Text>
         I have an account.

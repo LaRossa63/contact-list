@@ -1,11 +1,9 @@
 export class AuthDto {
-  email;
-  id;
-  nickName;
+  userName;
+  fullName;
 
   constructor(model) {
-    this.id = model._id;
-    this.email = model.email;
-    this.nickName = model.nickName;
+    this.userName = model.userName;
+    this.fullName = model.fullName;
   }
 }

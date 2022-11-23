@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Button } from 'components/Elements';
+import { useLogout } from 'api/services/Auth';
 
 const Container = styled.div`
   display: flex;
@@ -26,10 +27,16 @@ const MyButton = styled(Button)`
 `;
 
 export const Header = () => {
+  const { mutate: sendData } = useLogout();
+
+  const handleClickLogout = () => {
+    sendData();
+  };
+
   return (
     <Container>
       <Title>Contact List</Title>
-      <MyButton>Log Out</MyButton>
+      <MyButton onClick={handleClickLogout}>Log Out</MyButton>
     </Container>
   );
 };

@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 
-  position: absolute;
+  position: fixed;
   top: 0;
   z-index: 0;
 

@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
-import { validationResult } from 'express-validator';
 
+import { validationResult } from 'express-validator';
 import { AuthService } from '../service/index.js';
 
 export const AuthController = {
@@ -13,9 +13,10 @@ export const AuthController = {
         return next(ApiError.BadRequest('Заполните все поля', errors.array()));
       }
 
-      const { email, nickName, password } = req.body;
+      const { userName, fullName, password } = req.body;
 
-      const response = await AuthService.signUp(email, nickName, password);
+      const response = await AuthService.signUp(userName, fullName, password);
+
       res.cookie('refreshToken', response.refreshToken, {
         httpOnly: true,
         maxAge: 30 * 24 * 60 * 60 * 1000,
@@ -29,9 +30,15 @@ export const AuthController = {
 
   async signIn(req, res, next) {
     try {
-      const { email, password } = req.body;
+      const errors = validationResult(req);
 
-      const response = await AuthService.signIn(email, password);
+      if (!errors.isEmpty()) {
+        return next(ApiError.BadRequest('Заполните все поля', errors.array()));
+      }
+
+      const { userName, password } = req.body;
+
+      const response = await AuthService.signIn(userName, password);
 
       res.cookie('refreshToken', response.refreshToken, {
         httpOnly: true,
