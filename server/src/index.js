@@ -6,7 +6,11 @@ import morgan from 'morgan';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 
-import { AuthRouter, ListContactRouter } from './router/index.js';
+import {
+  AuthRouter,
+  ListContactRouter,
+  FavouritesListContactRouter,
+} from './router/index.js';
 import { ErrorMiddlewares } from './middlewares/index.js';
 
 const app = express();
@@ -20,7 +24,7 @@ app.use(
 );
 app.use(morgan('dev'));
 
-app.use('/api', AuthRouter, ListContactRouter);
+app.use('/api', AuthRouter, ListContactRouter, FavouritesListContactRouter);
 app.use(ErrorMiddlewares);
 
 const AppStart = async () => {

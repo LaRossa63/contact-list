@@ -1,6 +1,11 @@
-import { Delete } from 'images/Icon';
 import React from 'react';
 import styled from 'styled-components';
+
+import {
+  useDeleteFavouritesContactList,
+  useGetFavouritesContactList,
+} from 'api/services/Contact';
+import { Delete } from 'images/Icon';
 
 const Container = styled.div``;
 
@@ -57,39 +62,31 @@ const TextTel = styled.span`
 `;
 
 export const FavouritesList = () => {
-  const defaultList = [
-    {
-      id: 0,
-      name: 'Стройка',
-      tel: '+7 (939) 709-32-58',
-    },
-    {
-      id: 1,
-      name: 'Овощи',
-      tel: '8 (939) 709-89-57',
-    },
-    {
-      id: 2,
-      name: 'Фрукты',
-      tel: '8 (939) 711-24-27',
-    },
-  ];
+  const { data: favouritesList } = useGetFavouritesContactList();
+  const { mutate: sendData } = useDeleteFavouritesContactList();
+
+  const handleClickDelete = (id: string) => {
+    sendData(id);
+
+    console.log('delete', id);
+  };
 
   return (
     <Container>
       <Title>Избранные контакты:</Title>
 
       <List>
-        {defaultList.map((element) => (
-          <ListItem key={element.id}>
-            <ContainerText>
-              <TextName>{element.name}</TextName>
-              <TextTel>{element.tel}</TextTel>
-            </ContainerText>
+        {favouritesList &&
+          favouritesList.map((element) => (
+            <ListItem key={element._id}>
+              <ContainerText>
+                <TextName>{element.name}</TextName>
+                <TextTel>{element.tel}</TextTel>
+              </ContainerText>
 
-            <Delete />
-          </ListItem>
-        ))}
+              <Delete onClick={() => handleClickDelete(element._id)} />
+            </ListItem>
+          ))}
       </List>
     </Container>
   );

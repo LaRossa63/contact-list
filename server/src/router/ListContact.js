@@ -4,4 +4,7 @@ import { ListContactController } from '../controllers/index.js';
 
 export const ListContactRouter = new Router();
 
-ListContactRouter.get('/contact', ListContactController.getContact);
+ListContactRouter.get(
+  '/default_contact_list',
+  ListContactController.getDefaultContactList
+);

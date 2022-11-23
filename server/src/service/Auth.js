@@ -18,9 +18,10 @@ export const AuthService = {
       fullName,
       password: hashPassword,
     });
-    const userDTO = new AuthDto(newUser);
-    const tokens = await TokenService.generateTokens({ ...userDTO });
 
+    const userDTO = new AuthDto(newUser);
+
+    const tokens = await TokenService.generateTokens({ ...userDTO });
     await TokenService.saveToken(userDTO.id, tokens.refreshToken);
 
     return { user: userDTO, ...tokens };
@@ -64,12 +65,11 @@ export const AuthService = {
       throw ApiError.UnauthorizedError();
     }
 
-    const user = await AuthModel.find({ userName: userData.userName });
-
+    const user = await AuthModel.findById(userData.id);
     const userDto = new AuthDto(user);
     const tokens = await TokenService.generateTokens({ ...userDto });
 
-    await TokenService.saveToken(userDto.userName, tokens.refreshToken);
+    await TokenService.saveToken(userDto.id, tokens.refreshToken);
     return { user: userDto, ...tokens };
   },
 };

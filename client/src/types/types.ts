@@ -5,12 +5,16 @@ export enum LinksApi {
   SIGN_IN = '/signin',
   LOGOUT = '/logout',
   REFRESH_TOKEN = '/refresh',
+
+  DEFAULT_CONTACT_LIST = '/default_contact_list',
+  FAVOURITES_CONTACT_LIST = '/favourites_contact_list',
 }
 
 export enum KeyApi {
   CHECK_AUTH = 'auth',
 
-  CONTACT_LIST = 'contact_list',
+  DEFAULT_CONTACT_LIST = 'default_contact_list',
+  FAVOURITES_CONTACT_LIST = 'favourites_contact_list',
 }
 
 export enum AppRoutes {
@@ -40,6 +44,17 @@ export interface ResponseAuthApi {
   accessToken: string;
   refreshToken: string;
 }
+
+interface ResponseContactListApi {
+  _id: string;
+  name: string;
+  tel: string;
+}
+
+export interface ResponseDefaultContactListApi extends ResponseContactListApi {}
+
+export interface ResponseFavouritesContactListApi
+  extends ResponseContactListApi {}
 
 export enum ValidValue {
   MIN_FULL_NAME = 4,
