@@ -17,7 +17,7 @@ const Title = styled.p`
 `;
 
 const List = styled.ul`
-  width: 300px;
+  width: 280px;
 
   display: flex;
   flex-direction: column;
@@ -67,8 +67,6 @@ export const FavouritesList = () => {
 
   const handleClickDelete = (id: string) => {
     sendData(id);
-
-    console.log('delete', id);
   };
 
   return (

@@ -19,7 +19,7 @@ export const Theme: DefaultTheme = {
   },
 
   typography: {
-    fontFamily: "font-family: 'Montserrat', sans-serif;",
+    fontFamily: "'Montserrat', sans-serif;",
 
     fontWeightLight: '300',
     fontWeightRegular: '400',

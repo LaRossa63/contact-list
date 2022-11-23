@@ -14,10 +14,17 @@ const ContainerContent = styled.div`
   height: 100%;
 
   display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 
   margin: 0 auto;
   padding: 20px;
-  gap: 400px;
+
+  @media (max-width: 625px) {
+    justify-content: center;
+
+    gap: 35px;
+  }
 `;
 
 export const ContactList = () => {

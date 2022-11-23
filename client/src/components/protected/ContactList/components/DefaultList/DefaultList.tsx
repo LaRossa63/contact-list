@@ -17,7 +17,7 @@ const Title = styled.p`
 `;
 
 const List = styled.ul`
-  width: 300px;
+  width: 280px;
 
   display: flex;
   flex-direction: column;
