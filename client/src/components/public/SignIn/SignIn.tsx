@@ -18,7 +18,7 @@ const Container = styled.div`
   height: 100vh;
 
   margin: 0 auto;
-  padding: 48px 48px 0 48px;
+  padding: 48px;
 
   background-color: ${(props) => props.theme.pallette.background.default};
 `;
